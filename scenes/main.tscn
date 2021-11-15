@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/room.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/camera.gd" type="Script" id=4]
+
+[node name="Root" type="Node2D"]
+
+[node name="DebugCamera" type="Camera2D" parent="."]
+position = Vector2( 3.05176e-05, 7.62939e-06 )
+scale = Vector2( 1.39297, 1.6311 )
+zoom = Vector2( 10, 10 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+zoom = Vector2( 0.25, 0.3 )
+script = ExtResource( 4 )
+
+[node name="room" parent="." instance=ExtResource( 3 )]
+
+[node name="room2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 216, 0 )
+
+[node name="room3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 216 )
+
+[node name="room4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, -216 )
+
+[node name="room5" parent="." instance=ExtResource( 3 )]
+position = Vector2( -216, 0 )
+
+[node name="player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 72, 104 )
+character = "☺"
+
+[connection signal="changed_rooms" from="player" to="Camera2D" method="_on_player_changed_rooms"]
