@@ -10,10 +10,12 @@ extents = Vector2( 44, 4 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 113.438, 108.696 )
 
-[node name="room" type="StaticBody2D"]
+[node name="Room" type="Node2D"]
 script = ExtResource( 3 )
 
-[node name="WallLabel" type="Label" parent="."]
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="WallLabel" type="Label" parent="Walls"]
 margin_right = 216.0
 margin_bottom = 216.0
 custom_colors/font_color = Color( 0, 1, 0, 1 )
@@ -49,56 +51,41 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TopWall1" type="CollisionShape2D" parent="."]
+[node name="TopWall1" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 52, 4 )
 shape = SubResource( 1 )
 
-[node name="TopWall2" type="CollisionShape2D" parent="."]
+[node name="TopWall2" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 164, 4 )
 shape = SubResource( 1 )
 
-[node name="BottomWall1" type="CollisionShape2D" parent="."]
+[node name="BottomWall1" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 164, 212 )
 shape = SubResource( 1 )
 
-[node name="BottomWall2" type="CollisionShape2D" parent="."]
+[node name="BottomWall2" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 52, 212 )
 shape = SubResource( 1 )
 
-[node name="LeftWall1" type="CollisionShape2D" parent="."]
+[node name="LeftWall1" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 4, 164 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
-[node name="LeftWall2" type="CollisionShape2D" parent="."]
+[node name="LeftWall2" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 4, 52 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
-[node name="RightWall1" type="CollisionShape2D" parent="."]
+[node name="RightWall1" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 212, 52 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
-[node name="RightWall2" type="CollisionShape2D" parent="."]
+[node name="RightWall2" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 212, 164 )
 rotation = 1.5708
 shape = SubResource( 1 )
-
-[node name="TopDoor" parent="." instance=ExtResource( 2 )]
-position = Vector2( 96, 0 )
-
-[node name="LeftDoor" parent="." instance=ExtResource( 2 )]
-position = Vector2( 0, 120 )
-rotation = -1.57079
-
-[node name="BottomDoor" parent="." instance=ExtResource( 2 )]
-position = Vector2( 120, 216 )
-rotation = 3.14159
-
-[node name="RightDoor" parent="." instance=ExtResource( 2 )]
-position = Vector2( 216, 96 )
-rotation = 1.57081
 
 [node name="RoomBounds" type="Area2D" parent="."]
 position = Vector2( 8, 0 )
@@ -107,5 +94,22 @@ scale = Vector2( 0.881538, 0.92 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomBounds"]
 position = Vector2( 113.438, 117.391 )
 shape = SubResource( 2 )
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="TopDoor" parent="Doors" instance=ExtResource( 2 )]
+position = Vector2( 96, 0 )
+
+[node name="LeftDoor" parent="Doors" instance=ExtResource( 2 )]
+position = Vector2( 0, 120 )
+rotation = -1.57079
+
+[node name="BottomDoor" parent="Doors" instance=ExtResource( 2 )]
+position = Vector2( 120, 216 )
+rotation = 3.14159
+
+[node name="RightDoor" parent="Doors" instance=ExtResource( 2 )]
+position = Vector2( 216, 96 )
+rotation = 1.57081
 
 [connection signal="body_entered" from="RoomBounds" to="." method="_on_RoomBounds_body_entered"]

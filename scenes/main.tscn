@@ -32,7 +32,7 @@ position = Vector2( 0, -216 )
 position = Vector2( -216, 0 )
 
 [node name="player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 72, 104 )
+position = Vector2( 40, 40 )
 character = "☺"
 
 [connection signal="changed_rooms" from="player" to="Camera2D" method="_on_player_changed_rooms"]
